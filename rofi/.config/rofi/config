@@ -1,0 +1,10 @@
+rofi.theme:			~/.local/share/rofi/themes/slate-nord.rasi
+rofi.modi:			drun,run,window,ssh
+rofi.lines:			10
+rofi.matching:			normal
+rofi.show-icons:		true
+rofi.hide-scrollbar:		true
+rofi.font:			Noto Sans Display 14
+rofi.class:			Rofi
+rofi.name:			Rofi
+rofi.title:			Rofi
