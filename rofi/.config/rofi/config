@@ -8,3 +8,4 @@ rofi.font:			Noto Sans Display 14
 rofi.class:			Rofi
 rofi.name:			Rofi
 rofi.title:			Rofi
+rofi.theme: /usr/share/rofi/themes/DarkBlue.rasi

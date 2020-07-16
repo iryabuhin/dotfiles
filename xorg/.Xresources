@@ -1,4 +1,4 @@
-#include "/home/iryab/.xfiles/themes/nord"
+#include "/home/iryab/.xfiles/themes/xcolors-material.Xresources"
 
 !! special
 !*.foreground:   #f1ebeb
@@ -38,25 +38,30 @@
 !*.color15:      #cfd0c2
 !
 
-!.font: xft:Hack:style=Regular:size=12
-URxvt.alpha: 0.7
 !! URxvt Appearance
-URxvt.font: xft:Iosevka Nerd Font:style=Regular:size=12
-URxvt.boldFont: xft:FiraCode Nerd Font:style=Bold:size=12
-URxvt.italicFont: xft:FiraCode Nerd Font:style=Italic:size=12
-URxvt.boldItalicfont: xft:FiraCode Nerd Font:style=Bold Italic:size=12
-URxvt.letterSpace: 1
-URxvt.lineSpace: 0
+URxvt*font: xft:Iosevka Nerd Font Mono:style=Regular:size=14
+!URxvt.boldFont: xft:Iosevka Nerd Font Mono:style=Bold:size=13
+!URxvt.italicFont: xft:Iosevka Nerd Font Mono:style=Italic:size=13
+!URxvt.boldItalicfont: xft:Iosevka Nerd Font Mono:style=Bold Italic:size=13
+!URxvt.letterSpace: 0
+!URxvt.lineSpace: 0
+
+URxvt.antialias: true
 URxvt.geometry: 92x24
 URxvt.internalBorder: 6
+URxvt.iconFile: /usr/share/icons/Papirus/48x48/apps/urxvt.svg
+
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
-URxvt.depth: 24
 URxvt.iso14755: false
+URxvt.iso14755_52:     false
+
+URxvt*transparent:false
+URxvt*depth: 32
 
 !! Common Keybinds for Navigations
 URxvt.keysym.Shift-Up: command:\033]720;1\007
@@ -66,8 +71,12 @@ URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
 
+URxvt.url-launcher: chromium
+URxvt.url-select.underline: true
+URxvt.matcher.button: 1
+
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font,matcher,eval,selection-to-clipboard
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
 URxvt.keysym.M-c: perl:clipboard:copy
@@ -76,24 +85,15 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.urlLauncher: firefox
-URxvt.underlineURLs: true
-URxvt.urlButton: 1
 
-! Normal copy-paste keybindings without perls
-!URxvt.iso14755:                   false
-!URxvt.keysym.Shift-Control-V:     eval:paste_clipboard
-!URxvt.keysym.Shift-Control-C:     eval:selection_to_clipboard
-!!Xterm escape codes, word by word movement
-!URxvt.keysym.Control-Left:        \033[1;5D
-!URxvt.keysym.Shift-Control-Left:  \033[1;6D
-!URxvt.keysym.Control-Right:       \033[1;5C
-!URxvt.keysym.Shift-Control-Right: \033[1;6C
-!URxvt.keysym.Control-Up:          \033[1;5A
-!URxvt.keysym.Shift-Control-Up:    \033[1;6A
-!URxvt.keysym.Control-Down:        \033[1;5B
-!URxvt.keysym.Shift-Control-Down:  \033[1;6B
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
 
 Xcursor.theme: posy-white-tiny
 Xcursor.size: 14
