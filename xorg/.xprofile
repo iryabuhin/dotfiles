@@ -4,9 +4,9 @@ xrdb -load -I$HOME ~/.Xresources
 picom -b --backend glx --vsync --xrender-sync-fence --glx-no-rebind-pixmap --use-damage --glx-no-stencil
 # Load custom ICC profile for Xiaomi Mi Notebook Pro
 # ICC profile itself can be found on the ArchWiki page for this laptop
-#dispwin -display :0 /usr/share/color/icc/colord/NV156FHM_N61.icm
-setbg &
-dunst &
+# dispwin -display :0 /usr/share/color/icc/colord/NV156FHM_N61.icm
+# setbg &
+# dunst &
 # urxvt daemon 
 urxvtd -q -f -o
 
@@ -14,14 +14,13 @@ urxvtd -q -f -o
 # runit service from artix repos doesnt work so using autostart
 stubby -g -l &
 
-xinput --set-prop 9 303 0.2 &
 # spotifyd daemon
 spotifyd &
-nm-applet &
+# nm-applet &
 # Speed up keyboard movement
 # (if the above sentence doesn't make any sense, play around 
 #  with this command and notice how the text cursor speed changes)
 xset r rate 300 50 &
 # Launch applets
 # ( if you're using dwm, requires systray patch)
-xautolock -time 30 -locker "gllock" &
+# xautolock -time 15 -locker "betterlockscreen -l" &

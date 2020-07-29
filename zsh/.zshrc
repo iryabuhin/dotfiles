@@ -1,9 +1,10 @@
 #!/usr/bin/env zsh
 # Autostart X
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
-
+# if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#   exec startx
+# fi
+# Enable VIM mode
+bindkey -v
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -11,7 +12,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
 
 # Enable highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -20,7 +21,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_DEFAULT_OPTS="--ansi"
-export FZF_DEFAULT_OPTS="--height 75% --layout=reverse --border --preview 'file {}' --preview-window down:1"
+#export FZF_DEFAULT_OPTS="--height 75% --layout=reverse --border --preview 'file {}' --preview-window down:1"
 export FZF_COMPLETION_TRIGGER="~~"
 
 
@@ -95,10 +96,11 @@ alias l='ls -la'
 COMPLETION_WAITING_DOTS="true"
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>1
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>1
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 2>1
 
 # Nord dir colors
-test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors/ls_colors)
+test -r "~/.dircolors" && eval $(dircolors ~/.dircolors)
 
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
+#(cat ~/.cache/wal/sequences)

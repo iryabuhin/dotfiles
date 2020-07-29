@@ -1,0 +1,37 @@
+alias zshconfig='$EDITOR $ZSH/oh-my-zsh.sh'
+alias dwmdir='$HOME/src/dwm'
+alias initvim='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
+
+# Command-line pastebin
+alias pastebin='nc termbin.com 9999'
+
+alias svstatall='sudo sv status /run/runit/serivce/*'
+alias sv='sudo sv'
+
+alias tr-start='sudo sv start transmission-daemon'
+alias tr-stop='sudo sv stop transmission-daemon'
+alias tr-reload='sudo sv reload transmission-daemon'
+alias tr-chech='sudo sv check transmission-daemon'
+alias tr-list='transmission-remote -n 'transmission:transmission' -l'
+alias tr-basicstats='transmission-remote -n 'transmission:transmission' -st'
+alias tr-fullstats='transmission-remote -n 'transmission:transmission' -si'
+
+alias ls='exa'
+alias la='ls -a'
+alias l='ls -la'
+
+
+# some git stuff
+alias gcl='git clone'
+alias gp='git pull'
+alias gst='git status'
+
+
+
+# some generally useful stuff
+alias mkd='mkdir -pv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias z='zathura'
+alias zin'zathura -'
+

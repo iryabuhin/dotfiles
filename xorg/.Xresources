@@ -39,13 +39,12 @@
 !
 
 !! URxvt Appearance
-URxvt*font: xft:Iosevka Nerd Font Mono:style=Regular:size=14
+URxvt*font: xft:Input Mono:style=Regular:size=14,xft:Iosevka Nerd Font Mono:style=Regular:size=14
 !URxvt.boldFont: xft:Iosevka Nerd Font Mono:style=Bold:size=13
 !URxvt.italicFont: xft:Iosevka Nerd Font Mono:style=Italic:size=13
 !URxvt.boldItalicfont: xft:Iosevka Nerd Font Mono:style=Bold Italic:size=13
-!URxvt.letterSpace: 0
-!URxvt.lineSpace: 0
-
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
 URxvt.antialias: true
 URxvt.geometry: 92x24
 URxvt.internalBorder: 6
@@ -60,8 +59,8 @@ URxvt.urgentOnBell: true
 URxvt.iso14755: false
 URxvt.iso14755_52:     false
 
-URxvt*transparent:false
-URxvt*depth: 32
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
 
 !! Common Keybinds for Navigations
 URxvt.keysym.Shift-Up: command:\033]720;1\007
