@@ -1,6 +1,10 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin/statusbar:$PATH
 export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+
+export _JAVA_OPTIONS='-Dsun.java2d.opengl=true'
+
 
 export FZF_DEFAULT_OPTS='--height 60% --border'
 export FZF_DEFAULT_COMMAND='fd --type f'

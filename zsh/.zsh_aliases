@@ -32,6 +32,5 @@ alias gst='git status'
 alias mkd='mkdir -pv'
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias z='zathura'
-alias zin'zathura -'
+alias zin='zathura -'
 
