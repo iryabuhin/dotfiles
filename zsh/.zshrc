@@ -53,6 +53,9 @@ _comp_options+=(globdots)
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+#alias runkali='sudo docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -66,7 +69,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_DEFAULT_OPTS="--ansi"
-#export FZF_DEFAULT_OPTS="--height 75% --layout=reverse --border --preview 'file {}' --preview-window down:1"
+export FZF_DEFAULT_OPTS="--height 75% --layout=reverse --border --preview 'file {}' --preview-window down:1"
 export FZF_COMPLETION_TRIGGER="~~"
 
 
@@ -141,12 +144,13 @@ alias l='ls -la'
 COMPLETION_WAITING_DOTS="true"
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>1
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>1
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 2>1
 
 # Nord dir colors
 test -r "~/.dircolors" && eval $(dircolors ~/.dircolors)
 
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
 #(cat ~/.cache/wal/sequences)
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
