@@ -2,6 +2,9 @@ alias zshconfig='$EDITOR $ZSH/oh-my-zsh.sh'
 alias dwmdir='$HOME/src/dwm'
 alias initvim='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
 
+# For safe removal of things, relies on 'trash-cli' package
+alias rm='trash-rm'
+
 # Command-line pastebin
 alias pastebin='nc termbin.com 9999'
 
@@ -19,9 +22,10 @@ alias tr-fullstats='transmission-remote -n 'transmission:transmission' -si'
 alias ls='exa'
 alias la='ls -a'
 alias l='ls -la'
+alias lr='ls -lRa'
 
 
-# some git stuff
+# git stuff
 alias gcl='git clone'
 alias gp='git pull'
 alias gst='git status'
@@ -32,6 +36,5 @@ alias gst='git status'
 alias mkd='mkdir -pv'
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias z='zathura'
 alias zin'zathura -'
 
