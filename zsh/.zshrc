@@ -1,11 +1,80 @@
-
 # Autostart X
 # if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #   exec startx
 # fi
 
+# Stuff borrowed from manjaro-zsh-config
+setopt correct                                      # Auto correct mistakes
+setopt extendedglob                                 # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob                                   # Case insensitive globbing
+setopt rcexpandparam                                # Array expension with parameters
+#setopt nocheckjobs                                 # Don't warn about running processes when exiting
+setopt numericglobsort                              # Sort filenames numerically when it makes sense
+setopt nobeep                                       # No beep
+setopt appendhistory                                # Immediately append history instead of overwriting
+setopt histignorealldups                            # If a new command is a duplicate, remove the older one
+setopt autocd                                       # if only directory path is entered, cd there.
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+
+zstyle ':completion:*' accept-exact '*(n)'
+zstyle ':completion:*' use-cache on
+
+WORDCHARS=${WORDCHARS//\/[&.;]}                     # Don't consider certain characters part of the word
+
 # Load colors
-autoload -U colors && colors 
+autoload -U compinit colors zcalc
+compinit -d
+colors
+
+# load zgen
+source "$HOME/.zgen/zgen.zsh"
+# if the init script doesn't exist
+if ! zgen saved; then
+
+  # specify plugins here
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/pip
+  zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/heroku
+  zgen oh-my-zsh plugins/z
+  zgen oh-my-zsh plugins/fzf
+  zgen oh-my-zsh plugins/python
+  zgen oh-my-zsh plugins/archlinux
+
+  # theme
+  zgen oh-my-zsh themes/clean
+  
+
+  # generate the init script from plugins above
+  zgen save
+fi
+
+COMPLETION_WAITING_DOTS="true"
+
+# Color man pages
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-r
+
+# Load dir colors
+test -r "~/.dircolors" && eval $(dircolors ~/.dircolors)
+
+# Use history substring search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# bind UP and DOWN arrow keys to history substring search
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 
 # Enable VIM mode
 bindkey -v
@@ -47,22 +116,13 @@ bindkey '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 # Edit line in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+bindkey '^p' edit-command-line
 
 _comp_options+=(globdots)
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 
 #alias runkali='sudo docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
 
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-# Enable highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 [[ -e "/usr/share/fzf/fzf-extras.zsh" ]] && source /usr/share/fzf/fzf-extras.zsh
@@ -79,78 +139,18 @@ export FZF_COMPLETION_TRIGGER="~~"
 # Uncomment the following line to disable key bindings (CTRL-T, CTRL-R, ALT-C)
 # export DISABLE_FZF_KEY_BINDINGS="true"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git archlinux python fzf alias-finder heroku z)
-
-alias ls='exa'
-alias la='ls -a'
-alias l='ls -la'
-
-COMPLETION_WAITING_DOTS="true"
-
-source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>1
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 2>1
 
-# Nord dir colors
-test -r "~/.dircolors" && eval $(dircolors ~/.dircolors)
 
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
 #(cat ~/.cache/wal/sequences)
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
