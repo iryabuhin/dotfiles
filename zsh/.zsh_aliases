@@ -2,9 +2,6 @@ alias zshconfig='$EDITOR $ZSH/oh-my-zsh.sh'
 alias dwmdir='$HOME/src/dwm'
 alias initvim='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
 
-# For safe removal of things, relies on 'trash-cli' package
-alias rm='trash-rm'
-
 # Command-line pastebin
 alias pastebin='nc termbin.com 9999'
 
