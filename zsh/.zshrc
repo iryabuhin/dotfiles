@@ -50,7 +50,7 @@ if ! zgen saved; then
   # generate the init script from plugins above
   zgen save
 fi
-
+zgen oh-my-zsh
 COMPLETION_WAITING_DOTS="true"
 
 # Color man pages
