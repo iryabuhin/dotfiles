@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Autostart X
 # if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #   exec startx
@@ -37,11 +44,6 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/sudo
-  zgen oh-my-zsh plugins/heroku
-  zgen oh-my-zsh plugins/z
-  zgen oh-my-zsh plugins/fzf
-  zgen oh-my-zsh plugins/python
-  zgen oh-my-zsh plugins/archlinux
 
   # theme
   zgen oh-my-zsh themes/clean
@@ -50,7 +52,7 @@ if ! zgen saved; then
   # generate the init script from plugins above
   zgen save
 fi
-zgen oh-my-zsh
+zgen load romkatv/powerlevel10k powerlevel10k
 COMPLETION_WAITING_DOTS="true"
 
 # Color man pages
@@ -67,7 +69,6 @@ export LESS=-r
 test -r "~/.dircolors" && eval $(dircolors ~/.dircolors)
 
 # Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -111,9 +112,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Choose directory in FZF
-bindkey '^f' 'cd "$(dirname "$(fzf)")"\n'
-
 # Edit line in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^p' edit-command-line
@@ -127,12 +125,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 [[ -e "/usr/share/fzf/fzf-extras.zsh" ]] && source /usr/share/fzf/fzf-extras.zsh
 export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# export FZF_DEFAULT_OPTS="--ansi"
-export FZF_DEFAULT_OPTS="--height 75% --layout=reverse --border --preview 'file {}' --preview-window down:1"
-export FZF_COMPLETION_TRIGGER="~~"
-
-
 # Uncomment the following line to disable fuzzy completion
 # export DISABLE_FZF_AUTO_COMPLETION="true"
 
@@ -146,11 +138,10 @@ export FZF_COMPLETION_TRIGGER="~~"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>1
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 2>1
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>1
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>1
 
-
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
-#(cat ~/.cache/wal/sequences)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

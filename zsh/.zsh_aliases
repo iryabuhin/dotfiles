@@ -6,7 +6,6 @@ alias initvim='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
 alias pastebin='nc termbin.com 9999'
 
 alias svstatall='sudo sv status /run/runit/serivce/*'
-alias sv='sudo sv'
 
 alias tr-start='sudo sv start transmission-daemon'
 alias tr-stop='sudo sv stop transmission-daemon'
@@ -16,7 +15,7 @@ alias tr-list='transmission-remote -n 'transmission:transmission' -l'
 alias tr-basicstats='transmission-remote -n 'transmission:transmission' -st'
 alias tr-fullstats='transmission-remote -n 'transmission:transmission' -si'
 
-alias ls='exa'
+alias ls='ls --color=auto'
 alias la='ls -a'
 alias l='ls -la'
 alias lr='ls -lRa'
