@@ -44,9 +44,10 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/tmux
 
   # theme
-  zgen oh-my-zsh themes/clean
+  # zgen oh-my-zsh themes/clean
   
 
   # generate the init script from plugins above
@@ -138,8 +139,14 @@ export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --ex
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>1
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>1
+ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
+if [ -d $ZSH_PLUGINS_DIR ]; then
+    source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>1
+    source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" 2>1
+else
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>1
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>1
+fi
 
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
 
