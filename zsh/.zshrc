@@ -69,13 +69,13 @@ export LESS=-r
 # Load dir colors
 test -r "~/.dircolors" && eval $(dircolors ~/.dircolors)
 
+zmodload zsh/terminfo
 # Use history substring search
 # bind UP and DOWN arrow keys to history substring search
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 
 
 # Enable VIM mode
@@ -139,14 +139,17 @@ export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --ex
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
+ZSH_PLUGINS=('zsh-syntax-highlighting' 'zsh-autosuggestions')
 ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
-if [ -d $ZSH_PLUGINS_DIR ]; then
-    source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>1
-    source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" 2>1
-else
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>1
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>1
-fi
+ZSH_SHARE_DIR="/usr/share/zsh"
+
+for plugin in $ZSH_PLUGINS; do
+    if [ -d $ZSH_PLUGINS_DIR ]; then
+        source "$ZSH_PLUGINS_DIR/$plugin/$plugin.zsh"
+    else
+        source "$ZSH_SHARE_DIR/$plugin/$plugin.zsh"
+    fi
+done
 
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
 
