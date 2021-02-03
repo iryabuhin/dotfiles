@@ -26,10 +26,13 @@ alias gcl='git clone'
 alias gp='git pull'
 alias gst='git status'
 
-
+# key bindings
+bindkey '^f' autosuggestion-accept
 
 # some generally useful stuff
 alias mkd='mkdir -pv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 
+
+alias nnn='nnn -adoSHr'
