@@ -147,7 +147,7 @@ for plugin in $ZSH_PLUGINS; do
     if [ -d $ZSH_PLUGINS_DIR ]; then
         source "$ZSH_PLUGINS_DIR/$plugin/$plugin.zsh"
     else
-        source "$ZSH_SHARE_DIR/$plugin/$plugin.zsh"
+        source "/usr/share/$plugin/$plugin.zsh"
     fi
 done
 
