@@ -54,6 +54,17 @@ if ! zgen saved; then
   zgen save
 fi
 zgen load romkatv/powerlevel10k powerlevel10k
+ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_FIXTERM_WITH_256COLOR=true
+ZSH_TMUX_UNICODE=true
+
+#if which tmux 2>&1 >/dev/null; then
+#  if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+#    tmux attach -t default || tmux new -s default; exit
+#  fi
+#fi
+
+
 COMPLETION_WAITING_DOTS="true"
 
 # Color man pages
