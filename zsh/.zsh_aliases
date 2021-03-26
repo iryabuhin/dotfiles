@@ -5,16 +5,6 @@ alias initvim='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
 # Command-line pastebin
 alias pastebin='nc termbin.com 9999'
 
-alias svstatall='sudo sv status /run/runit/serivce/*'
-
-alias tr-start='sudo sv start transmission-daemon'
-alias tr-stop='sudo sv stop transmission-daemon'
-alias tr-reload='sudo sv reload transmission-daemon'
-alias tr-chech='sudo sv check transmission-daemon'
-alias tr-list='transmission-remote -n 'transmission:transmission' -l'
-alias tr-basicstats='transmission-remote -n 'transmission:transmission' -st'
-alias tr-fullstats='transmission-remote -n 'transmission:transmission' -si'
-
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias l='ls -la'
@@ -25,6 +15,8 @@ alias lr='ls -lRa'
 alias gcl='git clone'
 alias gp='git pull'
 alias gst='git status'
+
+alias composer="php ~/bin/composer"
 
 # key bindings
 bindkey '^f' autosuggestion-accept

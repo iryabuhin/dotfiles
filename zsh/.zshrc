@@ -45,6 +45,8 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/sudo
   zgen oh-my-zsh plugins/tmux
+  zgen oh-my-zsh plugins/composer
+  zgen oh-my-zsh plugins/magento-2
 
   # theme
   # zgen oh-my-zsh themes/clean
