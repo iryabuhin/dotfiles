@@ -1,0 +1,13 @@
+[user]
+	email = ryabuchin@gmail.com
+	name = Ivan Ryabukhin
+[merge]
+	tool = meld
+[core]
+	excludesfile = /home/user/.gitexcludes
+[commit]
+	verbose = true
+[alias]
+	amend = commit --amend -C HEAD
+[help]
+	autocorrect = 1
