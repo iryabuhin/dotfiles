@@ -19,7 +19,7 @@ alias gst='git status'
 alias composer="php ~/bin/composer"
 
 # key bindings
-bindkey '^f' autosuggestion-accept
+bindkey '^f' autosuggest-accept
 
 # some generally useful stuff
 alias mkd='mkdir -pv'

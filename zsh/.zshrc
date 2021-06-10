@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Autostart X
 # if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #   exec startx
@@ -46,16 +39,15 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/sudo
   zgen oh-my-zsh plugins/tmux
   zgen oh-my-zsh plugins/composer
+  zgen oh-my-zsh plugins/docker
+  zgen oh-my-zsh plugins/docker-compose
   zgen oh-my-zsh plugins/magento-2
 
-  # theme
-  # zgen oh-my-zsh themes/clean
+  zgen oh-my-zsh themes/josh
   
-
   # generate the init script from plugins above
   zgen save
 fi
-zgen load romkatv/powerlevel10k powerlevel10k
 ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_FIXTERM_WITH_256COLOR=true
 ZSH_TMUX_UNICODE=true
@@ -165,6 +157,3 @@ for plugin in $ZSH_PLUGINS; do
 done
 
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
