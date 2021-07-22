@@ -43,7 +43,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/docker-compose
   zgen oh-my-zsh plugins/magento-2
 
-  zgen oh-my-zsh themes/josh
+  zgen oh-my-zsh themes/simple
   
   # generate the init script from plugins above
   zgen save

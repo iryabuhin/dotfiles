@@ -11,3 +11,5 @@
 	amend = commit --amend -C HEAD
 [help]
 	autocorrect = 1
+[rebase]
+	missingCommitsCheck = error

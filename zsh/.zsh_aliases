@@ -28,3 +28,16 @@ alias mv='mv -iv'
 
 
 alias nnn='nnn -adoSHr'
+
+# VSCode profiles
+profiles=('php' 'node' 'python')
+
+for p in $profiles; do
+    d="$HOME/.vscode/profiles/$p"
+    if [[ ! -d $d ]]; then
+        mkdir -pv $d
+    fi
+    alias "code-$p"="code --extensions-dir \"$HOME/.vscode/profiles/$p/extensions\" --user-data-dir \"$HOME/.vscode/profiles/$p/data\""
+done
+
+
