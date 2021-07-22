@@ -27,24 +27,28 @@ autoload -U compinit colors zcalc
 compinit -d
 colors
 
+plugins=(git pip sudo tmux magento-2 docker docker-compose composer node nvm jsontools)
+
+theme="simple"
+
+if [[ -v $ZSH_THEME ]]; then
+    theme="$ZSH_THEME"
+fi
+
 # load zgen
 source "$HOME/.zgen/zgen.zsh"
 # if the init script doesn't exist
 if ! zgen saved; then
 
-  # specify plugins here
   zgen oh-my-zsh
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/pip
-  zgen oh-my-zsh plugins/sudo
-  zgen oh-my-zsh plugins/tmux
-  zgen oh-my-zsh plugins/composer
-  zgen oh-my-zsh plugins/docker
-  zgen oh-my-zsh plugins/docker-compose
-  zgen oh-my-zsh plugins/magento-2
 
-  zgen oh-my-zsh themes/simple
-  
+  # specify plugins here
+  for plugin in $plugins; do
+      zgen oh-my-zsh plugins/$plugin
+  done
+
+  zgen oh-my-zsh themes/$theme
+
   # generate the init script from plugins above
   zgen save
 fi
