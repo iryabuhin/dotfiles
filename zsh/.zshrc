@@ -43,7 +43,7 @@ plugins=(
     vagrant-prompt
 )
 
-theme="arrow"
+theme="simple"
 
 if [[ -v $ZSH_THEME ]]; then
     theme="$ZSH_THEME"
@@ -54,8 +54,6 @@ source "$HOME/.zgen/zgen.zsh"
 # if the init script doesn't exist
 if ! zgen saved; then
 
-  echo "Creating a zgen init.zsh file..."
-
   zgen oh-my-zsh
 
   # specify plugins here
@@ -63,22 +61,22 @@ if ! zgen saved; then
       zgen oh-my-zsh plugins/$plugin
   done
 
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen load zsh-users/zsh-completions src
+  zgen oh-my-zsh themes/$theme
 
-  zgen oh-my-zsh "themes/$theme"
-
+  # generate the init script from plugins above
   zgen save
 fi
-
 ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_FIXTERM_WITH_256COLOR=true
 ZSH_TMUX_UNICODE=true
 
+#if which tmux 2>&1 >/dev/null; then
+#  if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+#    tmux attach -t default || tmux new -s default; exit
+#  fi
+#fi
 
-COMPLETION_WAITING_DOTS="true"
-
-# Color man pages
+# Colored man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -135,7 +133,7 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Edit line in vim with ctrl-e
+# Edit command line in text editor with Alt-e
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^[e' edit-command-line
 
@@ -144,7 +142,7 @@ _comp_options+=(globdots)
 #alias runkali='sudo docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
 
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 [[ -e "/usr/share/fzf/fzf-extras.zsh" ]] && source /usr/share/fzf/fzf-extras.zsh
 export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
@@ -155,10 +153,22 @@ export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --ex
 # export DISABLE_FZF_KEY_BINDINGS="true"
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-[[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
+ZSH_PLUGINS=('zsh-syntax-highlighting' 'zsh-autosuggestions')
+ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
+ZSH_SHARE_DIR="/usr/share/zsh"
+
+for plugin in $ZSH_PLUGINS; do
+    if [ -d $ZSH_PLUGINS_DIR ]; then
+        source "$ZSH_PLUGINS_DIR/$plugin/$plugin.zsh"
+    else
+        source "/usr/share/$plugin/$plugin.zsh"
+    fi
+done
+
+[[ -f $HOME/.zsh_aliases ]] && source $HOME/.zsh_aliases
