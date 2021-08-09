@@ -27,9 +27,23 @@ autoload -U compinit colors zcalc
 compinit -d
 colors
 
-plugins=(git pip sudo tmux magento-2 docker docker-compose composer node nvm jsontools)
+plugins=(
+    git
+    pip
+    sudo
+    tmux
+    magento-2
+    docker
+    docker-compose
+    composer
+    node
+    nvm
+    jsontools
+    vagrant
+    vagrant-prompt
+)
 
-theme="simple"
+theme="random"
 
 if [[ -v $ZSH_THEME ]]; then
     theme="$ZSH_THEME"
