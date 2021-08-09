@@ -43,7 +43,7 @@ plugins=(
     vagrant-prompt
 )
 
-theme="random"
+theme="arrow"
 
 if [[ -v $ZSH_THEME ]]; then
     theme="$ZSH_THEME"
@@ -54,6 +54,8 @@ source "$HOME/.zgen/zgen.zsh"
 # if the init script doesn't exist
 if ! zgen saved; then
 
+  echo "Creating a zgen init.zsh file..."
+
   zgen oh-my-zsh
 
   # specify plugins here
@@ -61,20 +63,17 @@ if ! zgen saved; then
       zgen oh-my-zsh plugins/$plugin
   done
 
-  zgen oh-my-zsh themes/$theme
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-completions src
 
-  # generate the init script from plugins above
+  zgen oh-my-zsh "themes/$theme"
+
   zgen save
 fi
+
 ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_FIXTERM_WITH_256COLOR=true
 ZSH_TMUX_UNICODE=true
-
-#if which tmux 2>&1 >/dev/null; then
-#  if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
-#    tmux attach -t default || tmux new -s default; exit
-#  fi
-#fi
 
 
 COMPLETION_WAITING_DOTS="true"
@@ -138,7 +137,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Edit line in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^p' edit-command-line
+bindkey '^[e' edit-command-line
 
 _comp_options+=(globdots)
 
@@ -161,17 +160,5 @@ export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --ex
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
-
-ZSH_PLUGINS=('zsh-syntax-highlighting' 'zsh-autosuggestions')
-ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
-ZSH_SHARE_DIR="/usr/share/zsh"
-
-for plugin in $ZSH_PLUGINS; do
-    if [ -d $ZSH_PLUGINS_DIR ]; then
-        source "$ZSH_PLUGINS_DIR/$plugin/$plugin.zsh"
-    else
-        source "/usr/share/$plugin/$plugin.zsh"
-    fi
-done
 
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
